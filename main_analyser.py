@@ -41,5 +41,25 @@ def main():
                 neg_test.append(words)
     #print(pos_tweets[:6])
     
+    #Tokenizing
+    tok_postweets=[]
+    tok_postest=[]
+    tok_negtweets=[]
+    tok_negtest=[]
+    for (words) in pos_tweets:
+    	words_filtered = [e.lower() for e in words.split()]
+    	tok_postweets.append((words_filtered))
+    for (words) in neg_tweets:
+    	words_filtered = [e.lower() for e in words.split()]
+    	tok_negtweets.append((words_filtered))
+    for (words) in pos_test:
+    	words_filtered = [e.lower() for e in words.split()]
+    	tok_postest.append((words_filtered))
+    for (words) in neg_test:
+    	words_filtered = [e.lower() for e in words.split()]
+    	tok_negtest.append((words_filtered)) 
+    #print(tok_postweets[:1])
+    #print(tok_negtweets[:1])
+    
 if __name__ == "__main__":                                                                              
     main()
