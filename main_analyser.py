@@ -61,5 +61,59 @@ def main():
     #print(tok_postweets[:1])
     #print(tok_negtweets[:1])
     
+        #Stopwords Removal
+    
+
+    filter_tweetspos=[]
+    filter_tweetsneg=[]
+    filter_testpos=[]
+    filter_testneg=[]
+    stopWords=defaultdict(int)
+    stopword=[]
+    f=open("stopWords.txt", "r")
+    for line in f:
+        if line:
+            line=line.strip(specialChar).lower()
+            stopword.append(line)
+    f.close()
+    #print(stopword)
+    for sent in tok_postweets:
+        filtered_sentence=[]
+        for w in sent:
+            #print(w)
+            if w not in stopword:
+                #print(w)
+                if "http" not in w:
+                    filtered_sentence.append(w)
+        filter_tweetspos.append(filtered_sentence)
+    for sent in tok_negtweets:
+        filtered_sentence=[]
+        for w in sent:
+            #print(w)
+            if w not in stopword:
+                #print(w)
+                if "http" not in w:
+                    filtered_sentence.append(w)
+        filter_tweetsneg.append(filtered_sentence)
+    for sent in tok_postest:
+        filtered_sentence=[]
+        for w in sent:
+            #print(w)
+            if w not in stopword:
+                if "http" not in w:
+                #print(w)
+                    filtered_sentence.append(w)
+        filter_testpos.append(filtered_sentence)
+    for sent in tok_negtest:
+        filtered_sentence=[]
+        for w in sent:
+            #print(w)
+            if w not in stopword:
+                if "http" not in w:
+                #print(w)
+                    filtered_sentence.append(w)
+        filter_testneg.append(filtered_sentence) 
+    #print(filter_tweetspos[:1])
+    
 if __name__ == "__main__":                                                                              
     main()
