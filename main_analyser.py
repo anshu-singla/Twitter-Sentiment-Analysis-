@@ -122,6 +122,27 @@ def main():
     neg_tweets=[]
     pos_test=[]
     neg_test=[]
+    for sent in filter_tweetspos:
+        filtered_sentence=[]
+        for w in sent:
+            filtered_sentence.append(ps.stem(w))
+        pos_tweets.append(filtered_sentence)
+    for sent in filter_tweetsneg:
+        filtered_sentence=[]
+        for w in sent:
+            filtered_sentence.append(ps.stem(w))
+        neg_tweets.append(filtered_sentence)
+    for sent in filter_testpos:
+        filtered_sentence=[]
+        for w in sent:
+            filtered_sentence.append(ps.stem(w))
+        pos_test.append(filtered_sentence)
+    for sent in filter_testneg:
+        filtered_sentence=[]
+        for w in sent:
+            filtered_sentence.append(ps.stem(w))
+        neg_test.append(filtered_sentence) 
+    #print(pos_tweets)
     
 if __name__ == "__main__":                                                                              
     main()
