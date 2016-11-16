@@ -8,6 +8,8 @@ import collections
 import nltk.classify.util
 from prepare import *
 from collections import defaultdict
+from nltk.stem import PorterStemmer
+
 
 
 def main():
@@ -114,6 +116,12 @@ def main():
                     filtered_sentence.append(w)
         filter_testneg.append(filtered_sentence) 
     #print(filter_tweetspos[:1])
+
+     #Stemming
+    pos_tweets=[]
+    neg_tweets=[]
+    pos_test=[]
+    neg_test=[]
     
 if __name__ == "__main__":                                                                              
     main()
