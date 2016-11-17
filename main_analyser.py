@@ -148,6 +148,16 @@ def main():
         #print(words)
         words= [e.lower() for e in words]
         tweets.append((words,'positive'))
+    for (words) in neg_tweets:
+        words= [e.lower() for e in words]
+        tweets.append((words,'negative'))
+    for (words) in pos_test:
+        words= [e.lower() for e in words]
+        test.append((words,'positive'))
+    for (words) in neg_test:
+        words= [e.lower() for e in words]
+        test.append((words,'negative'))
+    #print(tweets)
     
 if __name__ == "__main__":                                                                              
     main()
