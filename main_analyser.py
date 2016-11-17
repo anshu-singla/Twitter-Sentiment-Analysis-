@@ -143,6 +143,11 @@ def main():
             filtered_sentence.append(ps.stem(w))
         neg_test.append(filtered_sentence) 
     #print(pos_tweets)
+
+    for (words) in pos_tweets:
+        #print(words)
+        words= [e.lower() for e in words]
+        tweets.append((words,'positive'))
     
 if __name__ == "__main__":                                                                              
     main()
