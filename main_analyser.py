@@ -10,6 +10,12 @@ from prepare import *
 from collections import defaultdict
 from nltk.stem import PorterStemmer
 
+def get_words_in_tweets(tweets):
+   	all_words = []
+   	for (words, sentiment) in tweets:
+   		all_words.extend(words)
+   	return all_words
+
 
 
 def main():
@@ -158,6 +164,8 @@ def main():
         words= [e.lower() for e in words]
         test.append((words,'negative'))
     #print(tweets)
+
+    word_features = get_word_features(get_words_in_tweets(tweets))
     
 if __name__ == "__main__":                                                                              
     main()
