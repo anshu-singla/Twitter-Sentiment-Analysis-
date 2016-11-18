@@ -169,6 +169,7 @@ def main():
     #print(tweets)
 
     word_features = get_word_features(get_words_in_tweets(tweets))
+    test_features = get_word_features(get_words_in_tweets(test))
     
 if __name__ == "__main__":                                                                              
     main()
