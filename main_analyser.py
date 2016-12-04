@@ -9,6 +9,7 @@ import nltk.classify.util
 from prepare import *
 from collections import defaultdict
 from nltk.stem import PorterStemmer
+ps = PorterStemmer()
 
 def get_words_in_tweets(tweets):
    	all_words = []
@@ -22,11 +23,12 @@ def get_word_features(wordlist):
    	return word_features
 
 def main():
-	pos_tweets=[]
+    pos_tweets=[]
     neg_tweets=[]
     pos_test=[]
     neg_test=[]
-	acronymDict,stopWords,emoticonsDict = loadDictionary()
+    specialChar='1234567890#@%^&()_=`{}:"|[]\;\',./\n\t\r '
+    acronymDict,stopWords,emoticonsDict = loadDictionary()
     #print(acronymDict)
     #print(stopWords)
     #print(emoticonsDict)
@@ -153,6 +155,10 @@ def main():
         neg_test.append(filtered_sentence) 
     #print(pos_tweets)
 
+
+    tweets=[]
+    test=[]
+
     for (words) in pos_tweets:
         #print(words)
         words= [e.lower() for e in words]
@@ -170,6 +176,28 @@ def main():
 
     word_features = get_word_features(get_words_in_tweets(tweets))
     test_features = get_word_features(get_words_in_tweets(test))
-    
+
+    def extract_features(document):
+        document_words = set(document)
+        features={}
+        for word in word_features:
+            features['contains(%s)' % word] = (word in document_words)
+        return features
+
+    def extract_features1(document):
+        document_words = set(document)
+        features={}
+        for word in test_features:
+            features['contains(%s)' % word] = (word in document_words)
+        return features
+
+    training_set=nltk.classify.apply_features(extract_features,tweets)
+    testing_set=nltk.classify.apply_features(extract_features1,test)
+
+    # #NB
+    classifier=nltk.NaiveBayesClassifier.train(training_set)
+    print('accuracy:',nltk.classify.util.accuracy(classifier,testing_set))
+    #result = 0.8244563504569807
+        
 if __name__ == "__main__":                                                                              
     main()
